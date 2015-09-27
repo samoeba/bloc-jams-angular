@@ -40,6 +40,7 @@ body.album {
     margin: 1.5rem auto;
     font-weight: 300;
     font-size: 0.75em;
+    margin-bottom: 200px;
 }
 
 .album-view-song-item {
@@ -116,3 +117,4 @@ body.album {
          margin: auto;
      }
  }
+

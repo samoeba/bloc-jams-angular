@@ -38,3 +38,7 @@ body.collection {
  .collection-album-container img {
      width: 80%;
  }
+
+.album-covers .collection-album-container:nth-child(4n+5) {
+    clear: both;
+}

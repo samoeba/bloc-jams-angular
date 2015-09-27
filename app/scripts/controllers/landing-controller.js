@@ -4,11 +4,12 @@ angular.module('blocJams')
     $scope.tagLine = 'Turn the music up!';
 
     $(function () {
+        console.log("checkpoint");
         var pointsArray = $('.point');
 
-        var animatePoints = function () {
+        var animatePoints = function() {
 
-            var revealPoint = function () {
+            var revealPoint = function() {
                 $(this).css({
                     opacity: 1,
                     transform: 'scaleX(1) translateY(0)'
@@ -23,15 +24,15 @@ angular.module('blocJams')
                 animatePoints();
             }
 
-            $(window).scroll(function (event) {
+            $(window).scroll(function() {
 
                 //console.log("Current offset from the top is " + pointsArray[0].getBoundingClientRect().top + " pixels");
+                //console.log("Window from the top is " + $(window).scrollTop());
                 if ($(window).scrollTop() >= 100) {
                     animatePoints();
                 }
 
             });
-
         });
     });
 }]);

@@ -18,6 +18,11 @@ var Hapi = require('hapi'),
             path: '/assets/{path*}',
             handler: createDirectoryRoute('assets')
         },
+        data: {
+            method: 'GET',
+            path: '/data/{path*}',
+            handler: createDirectoryRoute('data')
+        },
         templates: {
             method: 'GET',
             path: '/templates/{path*}',
@@ -32,7 +37,7 @@ var Hapi = require('hapi'),
         }
     };
 
-server.route([ routes.css, routes.js, routes.assets, routes.templates, routes.spa ]);
+server.route([ routes.css, routes.js, routes.assets, routes.data, routes.templates, routes.spa ]);
 server.start( onServerStarted );
 
 function onServerStarted() {
