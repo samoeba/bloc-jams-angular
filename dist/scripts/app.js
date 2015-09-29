@@ -13,7 +13,7 @@ blocJams.config(function($stateProvider, $locationProvider){
         })
         .state('album', {
             url: '/album',
-            controller: 'AlbumController',
+            controller: 'AlbumController2',
             templateUrl: '../templates/album.html'
         })
         .state('collection', {

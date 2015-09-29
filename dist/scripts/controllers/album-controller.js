@@ -1,33 +1,78 @@
+//noinspection JSLint
 angular.module('blocJams')
 
-.controller('AlbumController', ['$scope', '$http', function ($scope, $http) {
+    .factory('albums', function($http) {
+        "use strict";
 
-        $http({ method: 'GET', url: '/data/albums.json' }).success(function (data) {
-            console.log("Made it this far.");
+        return {
+            getAlbums: function() {
+                //since $http.get returns a promise,
+                //and promise.then() also returns a promise
+                //that resolves to whatever value is returned in it's
+                //callback argument, we can return that.
+                return $http.get('/data/albums.json').then(function(result) {
+                    return result.data;
+                });
+            }
+        };
+    })
+
+    .controller('AlbumController', ['$scope', 'albums', function ($scope, albums) {
+        "use strict";
+
+        albums.getAlbums().then(function(data) {
+            //this will execute when the
+            //AJAX call completes.
             $scope.collection = data;
         });
 
-//        $(function () {
+        console.log(albums.getAlbums());
+
+
+        //$http({ method: 'GET', url: '/data/albums.json' }).success(function (data) {
+        //    console.log("Made it this far.");
+        //    $scope.collection = data;
+        //    //var albumPicasso, albumMarconi, albumDylan, albumModest, albumBarnett;
+        //    //albumPicasso = $scope.collection[0];
+        //    //albumMarconi = $scope.collection[1];
+        //    //albumDylan = $scope.collection[2];
+        //    //albumModest = $scope.collection[3];
+        //    //albumBarnett = $scope.collection[4];
+        //    //return [albumPicasso, albumMarconi, albumDylan, albumModest, albumBarnett];
+        //})
+
+        //var albums = someFunction();
+        //var albumPicasso = albums[0];
+        //console.log(albumPicasso);
+
+        //noinspection JSLint
+        var $j = jQuery.noConflict();
+
+        $j(function () {
+
+            var xyz = 1;
+
+            console.log(xyz);
 //
 //            //Creates a row of data for each song
 //            var createSongRow = function(songNumber, songName, songLength) {
 //
-//                //HTML for song row
-//                var template =
-//                        '<tr class="album-view-song-item">'
-//                        + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
-//                        + '  <td class="song-item-title">' + songName + '</td>'
-//                        + '  <td class="song-item-duration">' + songLength + '</td>'
-//                        + '</tr>'
-//                    ;
+//                ////HTML for song row
+//                //var template =
+//                //        '<tr class="album-view-song-item">'
+//                //        + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
+//                //        + '  <td class="song-item-title">' + songName + '</td>'
+//                //        + '  <td class="song-item-duration">' + songLength + '</td>'
+//                //        + '</tr>'
+//                //    ;
 //
 //                //Variable for the HTML
-//                var $row = $(template);
+//                var $row = $j(".album-view-song-item");
 //
 //                //Determines status of clicked song row and changes accordingly
 //                var clickHandler = function() {
 //
-//                    var songNumber = parseInt($(this).attr('data-song-number'));
+//                    var songNumber = parseInt($j(this).attr('data-song-number'));
 //
 //
 //                    if (currentlyPlayingSongNumber !== null) {
@@ -36,7 +81,7 @@ angular.module('blocJams')
 //                    }
 //
 //                    if (currentlyPlayingSongNumber !== songNumber) {
-//                        $(this).html(pauseButtonTemplate);
+//                        $j(this).html(pauseButtonTemplate);
 //                        setSong(songNumber);
 //                        currentSoundFile.play();
 //
@@ -48,14 +93,14 @@ angular.module('blocJams')
 //                    //If the currentlyPlayingSongNumber is equal to the song row we just clicked then it will either pause or play it
 //                    else if (currentlyPlayingSongNumber === songNumber) {
 //                        if (currentSoundFile.isPaused()) {
-//                            $(this).html(pauseButtonTemplate);
+//                            $j(this).html(pauseButtonTemplate);
 //                            $playPauseButton.html(playerBarPauseButton);
 //                            currentSoundFile.play();
 //
 //                            updateSeekBarWhileSongPlays();
 //                        } else {
-//                            $(this).html(playButtonTemplate);
-//                            $('.left-controls.play-pause').html(playerBarPlayButton);
+//                            $j(this).html(playButtonTemplate);
+//                            $j('.left-controls.play-pause').html(playerBarPlayButton);
 //                            currentSoundFile.pause();
 //
 //                            $playPauseButton.html(playerBarPlayButton);
@@ -65,7 +110,7 @@ angular.module('blocJams')
 //                };
 //
 //                var onHover = function() {
-//                    var songNumberCell = $(this).find('.song-item-number');
+//                    var songNumberCell = $j(this).find('.song-item-number');
 //                    var songNumber = parseInt(songNumberCell.attr('data-song-number'));
 //
 //                    if (songNumber !== currentlyPlayingSongNumber) {
@@ -74,7 +119,7 @@ angular.module('blocJams')
 //                };
 //
 //                var offHover = function() {
-//                    var songNumberCell = $(this).find('.song-item-number');
+//                    var songNumberCell = $j(this).find('.song-item-number');
 //                    var songNumber = parseInt(songNumberCell.attr('data-song-number'));
 //
 //                    if (songNumber !== currentlyPlayingSongNumber) {
@@ -94,11 +139,11 @@ angular.module('blocJams')
 //
 //                currentAlbum = album;
 //
-//                var $albumTitle = $('.album-view-title');
-//                var $albumArtist = $('.album-view-artist');
-//                var $albumReleaseInfo = $('.album-view-release-info');
-//                var $albumImage = $('.album-cover-art');
-//                var $albumSongList = $('.album-view-song-list');
+//                var $albumTitle = $j('.album-view-title');
+//                var $albumArtist = $j('.album-view-artist');
+//                var $albumReleaseInfo = $j('.album-view-release-info');
+//                var $albumImage = $j('.album-cover-art');
+//                var $albumSongList = $j('.album-view-song-list');
 //
 //                $albumTitle.text(album.name);
 //                $albumArtist.text(album.artist);
@@ -124,11 +169,11 @@ angular.module('blocJams')
 ////------------------------------------------------SEEK BAR----------------------------------------------------------------------
 //
 //            var setCurrentTimeInPlayerBar = function(currentTime) {
-//                var curTime = $('.current-time').html(filterTimeCode(currentTime));
+//                var curTime = $j('.current-time').html(filterTimeCode(currentTime));
 //            };
 //
 //            var setTotalTimeInPlayerBar = function() {
-//                var totTime = $('.total-time').html(filterTimeCode(currentSongDuration));
+//                var totTime = $j('.total-time').html(filterTimeCode(currentSongDuration));
 //            };
 //
 //            var filterTimeCode = function(timeInSeconds) {
@@ -151,7 +196,7 @@ angular.module('blocJams')
 //                    currentSoundFile.bind('timeupdate', function(event) {
 //                        // #2
 //                        var seekBarFillRatio = this.getTime() / this.getDuration();
-//                        var $seekBar = $('.seek-control .seek-bar');
+//                        var $seekBar = $j('.seek-control .seek-bar');
 //
 //                        updateSeekPercentage($seekBar, seekBarFillRatio);
 //
@@ -190,7 +235,7 @@ angular.module('blocJams')
 //                // returns: Object
 //                //      What that object is
 //
-//                var $seekBars = $('.player-bar .seek-bar');
+//                var $seekBars = $j('.player-bar .seek-bar');
 //
 //                $seekBars.click(function(event) {
 //                    // summary:
@@ -202,17 +247,17 @@ angular.module('blocJams')
 //                    // returns: Number
 //                    //      Ratio of seek bar offset X to width of bar
 //
-//                    var offsetX = event.pageX - $(this).offset().left;
-//                    var barWidth = $(this).width();
+//                    var offsetX = event.pageX - $j(this).offset().left;
+//                    var barWidth = $j(this).width();
 //                    var seekBarFillRatio = offsetX / barWidth;
 //
-//                    if ($(this).parent().attr('class') == 'seek-control') {
+//                    if ($j(this).parent().attr('class') == 'seek-control') {
 //                        seek(seekBarFillRatio * currentSoundFile.getDuration());
 //                    } else {
 //                        setVolume(seekBarFillRatio * 100);
 //                    }
 //
-//                    updateSeekPercentage($(this), seekBarFillRatio);
+//                    updateSeekPercentage($j(this), seekBarFillRatio);
 //                });
 //
 //                $seekBars.find('.thumb').mousedown(function(event) {
@@ -223,14 +268,14 @@ angular.module('blocJams')
 //                    // mouseup event:
 //                    //      Unbinds movemove and mouseup events
 //
-//                    var $seekBar = $(this).parent();
+//                    var $seekBar = $j(this).parent();
 //
-//                    $(document).bind('mousemove.thumb', function(event){
+//                    $j(document).bind('mousemove.thumb', function(event){
 //                        var offsetX = event.pageX - $seekBar.offset().left;
 //                        var barWidth = $seekBar.width();
 //                        var seekBarFillRatio = offsetX / barWidth;
 //
-//                        if ($(this).parent().attr('class') == 'seek-control') {
+//                        if ($j(this).parent().attr('class') == 'seek-control') {
 //                            seek(seekBarFillRatio * currentSoundFile.getDuration());
 //                        } else {
 //                            setVolume(seekBarFillRatio * 100);
@@ -239,9 +284,9 @@ angular.module('blocJams')
 //                        updateSeekPercentage($seekBar, seekBarFillRatio);
 //                    });
 //
-//                    $(document).bind('mouseup.thumb', function() {
-//                        $(document).unbind('mousemove.thumb');
-//                        $(document).unbind('mouseup.thumb');
+//                    $j(document).bind('mouseup.thumb', function() {
+//                        $j(document).unbind('mousemove.thumb');
+//                        $j(document).unbind('mouseup.thumb');
 //                    });
 //
 //                });
@@ -253,7 +298,7 @@ angular.module('blocJams')
 //                if (currentSoundFile.isEnded()){
 //                    if (currentSongIndex >= currentAlbum.songs.length -1) {
 //                        currentSoundFile.stop();
-//                        $('.album-song-button').html(playButtonTemplate);
+//                        $j('.album-song-button').html(playButtonTemplate);
 //                        $playPauseButton.html(playerBarPlayButton);
 //                    }
 //                    else {
@@ -271,9 +316,9 @@ angular.module('blocJams')
 //
 //            var updatePlayerBarSong = function() {
 //
-//                $('.currently-playing .song-name').text(currentSongFromAlbum.name);
-//                $('.currently-playing .artist-name').text(currentAlbum.artist);
-//                $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.name + " - " + currentAlbum.artist);
+//                $j('.currently-playing .song-name').text(currentSongFromAlbum.name);
+//                $j('.currently-playing .artist-name').text(currentAlbum.artist);
+//                $j('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.name + " - " + currentAlbum.artist);
 //                $playPauseButton.html(playerBarPauseButton);
 //
 //                setTotalTimeInPlayerBar();
@@ -326,7 +371,7 @@ angular.module('blocJams')
 //            };
 //
 //            var getSongNumberCell = function(number) {
-//                return $('.song-item-number[data-song-number="' + number + '"]');
+//                return $j('.song-item-number[data-song-number="' + number + '"]');
 //            };
 //
 //            var nextSong = function() {
@@ -383,7 +428,7 @@ angular.module('blocJams')
 //
 //            };
 //
-//            var $playPauseButton = $('.left-controls .play-pause');
+//            var $playPauseButton = $j('.left-controls .play-pause');
 //            var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
 //            var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 //            var playerBarPlayButton = '<span class="ion-play"></span>';
@@ -396,17 +441,17 @@ angular.module('blocJams')
 //            var currentSongDurations=[];
 //            var currentSongDuration = null;
 //            var currentVolume = 80;
-//            var volumeFill = $(".volume .fill");
-//            var volumeThumb = $(".volume .thumb");
+//            var volumeFill = $j(".volume .fill");
+//            var volumeThumb = $j(".volume .thumb");
 //            volumeFill.width(currentVolume + '%');
 //            volumeThumb.css({left: currentVolume + '%'});
-//            var fillStart = $(".seek-control .fill");
+//            var fillStart = $j(".seek-control .fill");
 //            fillStart.width(0);
 //
-//            var $previousButton = $('.left-controls .previous');
-//            var $nextButton = $('.left-controls .next');
+//            var $previousButton = $j('.left-controls .previous');
+//            var $nextButton = $j('.left-controls .next');
 //
-//            $(document).ready(function() {
+//            $j(document).ready(function() {
 //
 //                setCurrentAlbum(albumPicasso);
 //                $previousButton.click(previousSong);
@@ -427,6 +472,6 @@ angular.module('blocJams')
 //                });
 //
 //            });
-//
-//        });
+
+    });
 }]);
