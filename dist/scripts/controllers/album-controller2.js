@@ -3,8 +3,10 @@ angular.module("blocJams")
 
     .service("albumsService", ["$http", "$q", function ($http, $q) {
         "use strict";
-        var albums = this;
-        var deferred = $q.defer();
+        var albums, deferred, promise, allAlbums;
+
+        albums = this;
+        deferred = $q.defer();
 
         // do your get
         $http.get("/data/albums.json").then(function (data) {
@@ -16,9 +18,9 @@ angular.module("blocJams")
             return deferred.promise;
         };
 
-        var promise = this.getAllAlbums();
+        promise = this.getAllAlbums();
 
-        var allAlbums =
+        allAlbums =
             promise.then(function (data) {
                 albums.collection = data;
                 console.log(albums.collection.data);
