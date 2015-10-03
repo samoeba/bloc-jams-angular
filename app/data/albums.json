@@ -1,6 +1,6 @@
 [
   {
-    "id": "albumPicasso",
+    "id": "PabloPicassoTheColors",
     "name": "The Colors",
     "artist": "Pablo Picasso",
     "label": "Cubism",
@@ -16,7 +16,7 @@
   },
 
   {
-    "id": "albumMarconi",
+    "id": "GuglielmoMarconiTheTelephone",
     "name": "The Telephone",
     "artist": "Guglielmo Marconi",
     "label": "EM",
@@ -32,7 +32,7 @@
   },
 
   {
-    "id": "albumDylan",
+    "id": "BobDylanHighway61Revisited",
     "name": "Highway 61 Revisited",
     "artist": "Bob Dylan",
     "label": "Sony Music",
@@ -52,7 +52,7 @@
   },
 
   {
-    "id": "albumModest",
+    "id": "ModestMouseTheLonesomeCrowdedWest",
     "name": "The Lonesome Crowded West",
     "artist": "Modest Mouse",
     "label": "Glacial Pace Records",
@@ -72,7 +72,7 @@
   },
 
   {
-    "id": "albumBarnett",
+    "id": "CourtneyBarnettSometimesISitAndThinkAndSometimesIJustSit",
     "name": "Sometimes I Sit and Think, And Sometimes I Just Sit",
     "artist": "Courtney Barnett",
     "label": "Marathon",

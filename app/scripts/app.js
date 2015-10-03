@@ -11,16 +11,21 @@ blocJams.config(function($stateProvider, $locationProvider){
             templateUrl: '../templates/landing.html',
             controller: 'LandingController'
         })
-        .state('album', {
-            url: '/album',
-            controller: 'AlbumController2',
-            templateUrl: '../templates/album.html'
-        })
         .state('collection', {
             url: '/collection',
             controller: 'CollectionController',
             templateUrl: '../templates/collection.html'
+        })
+        .state('album', {
+            url: '/album',
+            controller: 'AlbumController',
+            templateUrl: '../templates/album.html'
         });
+        //.state('album.picasso', {
+        //    url: '/album/:albumIndex',
+        //    templateUrl: '../templates/albums/picassoColors.html',
+        //    controller: 'AlbumController'
+        //});
 });
 
 
