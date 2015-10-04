@@ -1,4 +1,4 @@
-var blocJams = angular.module('blocJams', ['ui.router']);
+var blocJams = angular.module("blocJams", ["ui.router", "services"]);
 
 blocJams.config(function($stateProvider, $locationProvider){
     $locationProvider.html5Mode({
@@ -17,15 +17,10 @@ blocJams.config(function($stateProvider, $locationProvider){
             templateUrl: '../templates/collection.html'
         })
         .state('album', {
-            url: '/album',
+            url: '/album/:albumId',
             controller: 'AlbumController',
             templateUrl: '../templates/album.html'
         });
-        //.state('album.picasso', {
-        //    url: '/album/:albumIndex',
-        //    templateUrl: '../templates/albums/picassoColors.html',
-        //    controller: 'AlbumController'
-        //});
 });
 
 

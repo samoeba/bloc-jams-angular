@@ -17,15 +17,10 @@ blocJams.config(function($stateProvider, $locationProvider){
             templateUrl: '../templates/collection.html'
         })
         .state('album', {
-            url: '/album',
+            url: '/album/:albumId',
             controller: 'AlbumController',
             templateUrl: '../templates/album.html'
         });
-        //.state('album.picasso', {
-        //    url: '/album/:albumIndex',
-        //    templateUrl: '../templates/albums/picassoColors.html',
-        //    controller: 'AlbumController'
-        //});
 });
 
 
