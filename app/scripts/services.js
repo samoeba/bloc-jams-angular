@@ -9,6 +9,62 @@ var jamsServices = angular.module("services", [])
     .service("albumsService", ["$http", function ($http) {
         "use strict";
 
+        var albumsService = this, i;
+
+        albumsService.collection = $http.get("/data/albums.json");
+
+        return {
+
+            collection: albumsService.collection,
+            getAlbumById: function (data, prop, value) {
+                for (i = 0; i < data.length; i++) {
+                    if (data[i][prop] == value) {
+                        return i;
+                    }
+                }
+            }
+        };
+
+        //return albumsService;
+
+        //albumsService.getAlbumById = function (id) {
+        //    for (i = 0, i < albumsService.collection.length, i++) {
+        //
+        //    }
+        //};
+
+        //==============================================================
+
+        //var albumsService = this,
+        //    deferred,
+        //    ALBUMS_DATA = "/data/albums.json";
+        //albumsService.collection = {};
+        //
+        //albumsService.getCollection = function () {
+        //    deferred = $q.defer();
+        //
+        //    $http.get(ALBUMS_DATA)
+        //        .success(function (response) {
+        //            albumsService.collection = response;
+        //            deferred.resolve(response);
+        //        });
+        //
+        //    return deferred.promise;
+        //
+        //};
+        //
+        //albumsService.getAlbumAt = function(_id) {
+        //    albumsService.getCollection();
+        //    return filterFilter(albumsService.getCollection(), {
+        //        id: _id
+        //    })[0];
+        //};
+        //
+        //return albumsService;
+
+
+        //==============================================================
+
         //var model = this,
         //    URLS = {
         //        FETCH: "/data/albums.json"
@@ -28,22 +84,24 @@ var jamsServices = angular.module("services", [])
         //    return $http.get(URLS.FETCH).then(cacheCollection);
         //};
 
-        //this.collection = $http.get("/data/albums.json");
+        //==============================================================
 
-        var model = this;
+        //var model = this;
+        //
+        //model.collection = $http.get("/data/albums.json");
+        //
+        //model.getCollection = function() {
+        //    return model.collection;
+        //};
+        //
+        //model.getAlbumAt = function(_id) {
+        //    model.getCollection();
+        //    return filterFilter(model.collection, {
+        //        id: _id
+        //    })[0];
+        //};
 
-        model.collection = $http.get("/data/albums.json");
-
-        model.getCollection = function() {
-            return model.collection;
-        };
-
-        model.getAlbumAt = function(_id) {
-            model.getCollection();
-            return filterFilter(model.collection, {
-                id: _id
-            })[0];
-        };
+        //===============================================================
 
         //var deferred, thisService;
         //

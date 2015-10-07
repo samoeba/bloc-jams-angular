@@ -17,9 +17,9 @@ blocJams.config(function($stateProvider, $locationProvider){
             templateUrl: '../templates/collection.html'
         })
         .state('album', {
-            url: '/album/:albumId',
-            controller: 'AlbumController',
-            templateUrl: '../templates/album.html'
+            url: "/album/:id",
+            controller: "AlbumController",
+            templateUrl: "../templates/album.html"
         });
 });
 

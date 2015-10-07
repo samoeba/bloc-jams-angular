@@ -4,9 +4,9 @@
             <img ng-src="{{album.albumArtUrl}}"/>
             <div class="collection-album-info caption">
                 <p>
-                    <a class="album-name" ng-href="collection/{{album.id}}">{{album.name}}</a>
+                    <a class="album-name" ng-href="album/{{album.aid}}">{{album.name}}</a>
                     <br/>
-                    <a ui-sref=".album({album: album.id})">{{album.artist}}</a>
+                    <a ui-sref=".album({album: album.aid})">{{album.artist}}</a>
                     <br/>
                     {{album.songs.length}} Songs
                     <br/>
