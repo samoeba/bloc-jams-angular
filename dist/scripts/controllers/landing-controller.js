@@ -1,34 +1,39 @@
+//noinspection JSLint
+var $j = jQuery.noConflict();
+
 angular.module('blocJams')
 
 .controller('LandingController', ['$scope', function ($scope) {
+    "use strict";
+
     $scope.tagLine = 'Turn the music up!';
 
-    $(function () {
+    $j(function () {
         console.log("checkpoint");
-        var pointsArray = $('.point');
+        var pointsArray = $j('.point');
 
         var animatePoints = function() {
 
             var revealPoint = function() {
-                $(this).css({
+                $j(this).css({
                     opacity: 1,
                     transform: 'scaleX(1) translateY(0)'
                 });
             };
-            $.each($('.point'), revealPoint);
+            $j.each($j('.point'), revealPoint);
         };
 
-        $(window).load(function () {
+        $j(window).load(function () {
 
-            if ($(window).height() > 1200) {
+            if ($j(window).height() > 1200) {
                 animatePoints();
             }
 
-            $(window).scroll(function() {
+            $j(window).scroll(function() {
 
                 //console.log("Current offset from the top is " + pointsArray[0].getBoundingClientRect().top + " pixels");
                 //console.log("Window from the top is " + $(window).scrollTop());
-                if ($(window).scrollTop() >= 100) {
+                if ($j(window).scrollTop() >= 100) {
                     animatePoints();
                 }
 

@@ -1,8 +1,9 @@
 angular.module('blocJams')
 
-.controller('CollectionController', ['$scope', '$http', function ($scope, $http) {
-    $http({ method: 'GET', url: '/data/albums.json' }).success(function (data) {
-        console.log("Made it this far.");
-        $scope.collection = data;
+.controller('CollectionController', ["$scope", "GetAlbum", function ($scope, GetAlbum) {
+
+    GetAlbum.collection.then(function (albums) {
+        $scope.collection = albums.data;
     });
+
 }]);

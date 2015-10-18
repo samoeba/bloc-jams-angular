@@ -6,7 +6,7 @@
                 <p>
                     <a class="album-name" ng-href="album/{{album.aid}}">{{album.name}}</a>
                     <br/>
-                    <a ui-sref=".album({album: album.aid})">{{album.artist}}</a>
+                    <a ng-href="album/{{album.aid}}">{{album.artist}}</a>
                     <br/>
                     {{album.songs.length}} Songs
                     <br/>
