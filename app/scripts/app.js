@@ -1,4 +1,4 @@
-var blocJams = angular.module("blocJams", ["ui.router", "services"]);
+var blocJams = angular.module("blocJams", ["ui.router", "services", "directives"]);
 
 blocJams.config(function($stateProvider, $locationProvider){
     $locationProvider.html5Mode({
