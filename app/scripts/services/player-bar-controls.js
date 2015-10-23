@@ -1,6 +1,5 @@
 angular.module("services")
 
-
     .factory("PlayerBarControls", ["$q", "$stateParams", "GetAlbum", "SongInfo", "PlayAlbum", function ($q, $stateParams, GetAlbum, SongInfo, PlayAlbum) {
         "use strict";
 
@@ -121,7 +120,7 @@ angular.module("services")
                 $j(seekBar).find('.thumb').css({left: percentageString});
 
             },
-            clickSeekBarPosition: function (event) {
+            clickSeekBarPosition: function ($event) {
                 // summary:
                 //      Determines fill ratio based on where you clicked
                 // var OffsetX:
@@ -132,17 +131,17 @@ angular.module("services")
                 //      Ratio of seek bar offset X to width of bar
 
                 var offsetX, barWidth, seekBarFillRatio;
-                offsetX = event.clientX - $j(event.target).offset().left;
-                barWidth = $j(event.target).width();
+                offsetX = $event.clientX - $j($event.target).offset().left;
+                barWidth = $j($event.target).width();
                 seekBarFillRatio = offsetX / barWidth;
 
-                if ($j(event.target).parent().attr('class') === 'seek-control') {
+                if ($j($event.target).parent().attr('class') === 'seek-control') {
                     this.seek(seekBarFillRatio * SongInfo.currentSoundFile.getDuration());
                 } else {
                     PlayAlbum.setVolume(seekBarFillRatio * 100);
                 }
 
-                this.updateSeekPercentage($j(event.target), seekBarFillRatio);
+                this.updateSeekPercentage($j($event.target), seekBarFillRatio);
 
             }
 

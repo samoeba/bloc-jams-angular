@@ -3,7 +3,7 @@ var jamsDirectives = angular.module("directives", ["services"]);
 //noinspection JSLint
 var $j = jQuery.noConflict();
 
-    jamsDirectives.directive("pbSeekbar", function(SongInfo, PlayerBarControls, PlayAlbum) {
+    jamsDirectives.directive("pbSeekbar", ["SongInfo", "PlayerBarControls", "PlayAlbum", function(SongInfo, PlayerBarControls, PlayAlbum) {
 
         return {
             scope: true,
@@ -12,6 +12,7 @@ var $j = jQuery.noConflict();
             restrict: "E",
             link: function (scope) {
                 scope.clickSeekBarPosition = function ($event) {
+                    console.log("Seeking!");
                     PlayerBarControls.clickSeekBarPosition($event);
                 };
 
@@ -20,11 +21,12 @@ var $j = jQuery.noConflict();
                     var $seekBars, updateSeekPercentage;
                     $seekBars = $j('.player-bar .seek-bar');
                     updateSeekPercentage = function (seekbar, seekbarFillRatio) {
+                        console.log("Percenting!");
                         PlayerBarControls.updateSeekPercentage(seekbar, seekbarFillRatio);
                     };
 
 
-                    $seekBars.find('.thumb').mousedown(function (event) {
+                    $seekBars.find('.thumb').mousedown(function ($event) {
                         // summary:
                         //      Finds thumb class and assigns mousedown event to it, making it move with users cursor
                         // mousemove event:
@@ -54,8 +56,7 @@ var $j = jQuery.noConflict();
                         });
 
                     });
-
                 };
             }
         };
-    });
+    }]);

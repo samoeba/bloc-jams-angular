@@ -56,7 +56,7 @@ angular.module("services")
                 } else {
                     trackButton = $event.target.parentElement;
                 }
-                songNumber = parseInt(event.target.getAttribute('data-song-number'));
+                songNumber = parseInt($event.target.getAttribute('data-song-number'));
                 console.log(songNumber);
 
                 if (SongInfo.currentlyPlayingSongNumber !== null) {
