@@ -30,14 +30,14 @@
                 <span class="ion-play" ng-click="playPause()"></span>
             </a>
             <a class="next">
-                <span class="ion-skip-forward" ng-click="albumData()"></span>
+                <span class="ion-skip-forward" ng-click="nextSong()"></span>
             </a>
         </div>
         <div class="player-bar-control-group currently-playing">
             <h2 class="song-name">{{ currentSongFromAlbum().name }}</h2>
             <h2 class="artist-song-mobile">{{ currentSongFromAlbum().name }} {{ album.artist }}</h2>
             <div class="seek-control">
-                <pb-seekbar seek-info="time"></div>
+                <pb-seekbar seek-info="time"></pb-seekbar>
                 <div class="current-time">0:00</div>
                 <div class="total-time">0:00</div>
             </div>

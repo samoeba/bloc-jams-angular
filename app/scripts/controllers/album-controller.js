@@ -70,11 +70,11 @@ angular.module("blocJams")
         };
 
         $scope.nextSong = function() {
-            PlayerBarControls.next();
+            PlayerBarControls.nextSong();
         };
 
         $scope.previousSong = function() {
-            PlayerBarControls.previous();
+            PlayerBarControls.previousSong();
         };
 
         //$scope.albumData = function() {
