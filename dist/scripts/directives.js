@@ -10,8 +10,7 @@ var $j = jQuery.noConflict();
             replace: true,
             templateUrl: "/templates/seekbars.html",
             restrict: "E",
-            link: function link(scope, element, attrs) {
-
+            link: function (scope) {
                 scope.clickSeekBarPosition = function ($event) {
                     PlayerBarControls.clickSeekBarPosition($event);
                 };
