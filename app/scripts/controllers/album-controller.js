@@ -77,10 +77,6 @@ angular.module("blocJams")
             PlayerBarControls.previousSong();
         };
 
-        //$scope.albumData = function() {
-        //    PlayAlbum.albumData("songs", 2);
-        //};
-
         $scope.currentTrackDuration = function() {
             if (SongInfo.currentSoundFile){
                 return SongInfo.currentSoundFile.getDuration();
@@ -93,12 +89,12 @@ angular.module("blocJams")
                 if (SongInfo.isPlaying) {
                     $scope.currentTrackTime = SongInfo.currentSoundFile.getTime();
                     var seekBar = document.querySelector(".player-bar .seek-bar");
-                    var seekBarFillRatio = SongInfo.currentSoundFile.getTime() / SongInfo.currentSoundFile.getDuration();
+                    var seekBarFillRatio = SongInfo.currentSoundFile.getTime() / $scope.currentTrackDuration();
                     PlayerBarControls.updateSeekPercentage(seekBar, seekBarFillRatio);
                 } else if (!SongInfo.isPlaying) {
                     $scope.stopTime();
                 }
-            }, 200);
+            }, 500);
         };
 
         $scope.stopTime = function() {

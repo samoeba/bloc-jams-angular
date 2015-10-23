@@ -38,8 +38,8 @@
             <h2 class="artist-song-mobile">{{ currentSongFromAlbum().name }} {{ album.artist }}</h2>
             <div class="seek-control">
                 <pb-seekbar seek-info="time"></pb-seekbar>
-                <div class="current-time">0:00</div>
-                <div class="total-time">0:00</div>
+                <div class="current-time">{{ currentTrackTime | songTime }}</div>
+                <div class="total-time">{{ currentTrackDuration() | songTime }}</div>
             </div>
             <h3 class="artist-name">{{ album.artist }}</h3>
         </div>
